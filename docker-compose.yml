@@ -7,6 +7,7 @@ x-base_service: &base_service
       - &v1 /vat/backups/StableDiffusion/data:/data
       - &v2 ./output:/output
       - ./models_on_nvme:/data/models/Stable-diffusion/nvme
+      - /media/slu/7c02619d-4c63-4d86-95f4-f8c70ee965c0/SD:/data/models/Stable-diffusion/nvme2
       - ./vae_on_nvme:/data/models/VAE/nvme
     stop_signal: SIGKILL
     tty: true
