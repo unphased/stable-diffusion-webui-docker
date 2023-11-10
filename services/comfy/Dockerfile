@@ -17,7 +17,7 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout master && \
-  git reset --hard 7e941f9f247f9b013a33c2e7d117466108414e99 && \
+  git reset --hard 3e0033e && \
   pip install -r requirements.txt
 
 WORKDIR ${ROOT}
@@ -26,6 +26,9 @@ ADD https://github.com/madebyollin/taesd/raw/main/taesd_decoder.pth \
   ${ROOT}/models/vae_approx/taesd_decoder.pth
 ADD https://github.com/madebyollin/taesd/raw/main/taesdxl_decoder.pth \
   ${ROOT}/models/vae_approx/taesdxl_decoder.pth
+
+RUN cd custom_nodes && git clone https://github.com/ltdrdata/ComfyUI-Manager.git
+WORKDIR ${ROOT}
 
 # add info
 COPY . /docker/
