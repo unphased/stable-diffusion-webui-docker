@@ -9,6 +9,7 @@ declare -A MOUNTS
 MOUNTS["/root/.cache"]="/data/.cache"
 MOUNTS["${ROOT}/input"]="/data/config/comfy/input"
 MOUNTS["${ROOT}/output"]="/output/comfy"
+MOUNTS["${ROOT}/custom_nodes"]="/data/config/comfy/custom_nodes"
 
 for to_path in "${!MOUNTS[@]}"; do
   set -Eeuo pipefail
@@ -19,6 +20,7 @@ for to_path in "${!MOUNTS[@]}"; do
   fi
   mkdir -vp "$(dirname "${to_path}")"
   ln -sT "${from_path}" "${to_path}"
+  echo I Just Ran: ln -sT "${from_path}" "${to_path}"
   echo Mounted $(basename "${from_path}")
 done
 

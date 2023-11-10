@@ -27,8 +27,9 @@ ADD https://github.com/madebyollin/taesd/raw/main/taesd_decoder.pth \
 ADD https://github.com/madebyollin/taesd/raw/main/taesdxl_decoder.pth \
   ${ROOT}/models/vae_approx/taesdxl_decoder.pth
 
-RUN cd custom_nodes && git clone https://github.com/ltdrdata/ComfyUI-Manager.git
-WORKDIR ${ROOT}
+# might get clobbered by local file system, beware
+# RUN cd custom_nodes && git clone https://github.com/ltdrdata/ComfyUI-Manager.git
+# WORKDIR ${ROOT}
 
 # add info
 COPY . /docker/
