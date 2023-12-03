@@ -11,6 +11,7 @@ x-base_service: &base_service
       - /media/slu/SN750/SD:/data/models/Stable-diffusion/nvme3
       - /media/slu/Solidigm/SD:/data/models/Stable-diffusion/nvme4
       - ./vae_on_nvme:/data/models/VAE/nvme
+      - /media/slu/SN850X/SD_Lora:/data/models/Lora/sn850x
     stop_signal: SIGKILL
     tty: true
     deploy:
