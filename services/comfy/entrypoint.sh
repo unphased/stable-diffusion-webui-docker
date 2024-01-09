@@ -10,6 +10,7 @@ MOUNTS["/root/.cache"]="/data/.cache"
 MOUNTS["${ROOT}/input"]="/data/config/comfy/input"
 MOUNTS["${ROOT}/output"]="/output/comfy"
 MOUNTS["${ROOT}/custom_nodes"]="/data/config/comfy/custom_nodes"
+MOUNTS["${ROOT}/models"]="/data/config/comfy/models"
 
 for to_path in "${!MOUNTS[@]}"; do
   set -Eeuo pipefail
