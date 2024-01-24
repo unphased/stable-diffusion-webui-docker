@@ -9,6 +9,9 @@ x-base_service: &base_service
       - /media/slu/New Volume/from-slash/models_on_nvme:/data/models/Stable-diffusion/nvme
       - /media/slu/New Volume/from-sn850x/SD:/data/models/Stable-diffusion/nvme-sn850x
       - /media/slu/New Volume/from-solidigm/SD:/data/models/Stable-diffusion/nvme-solidigm
+      - /media/slu/New Volume/solidigm_sd_newer:/data/models/Stable-diffusion/nvme-solidigm_newer
+      - /media/slu/New Volume/sn850x_sd_newer:/data/models/Stable-diffusion/nvme-sn850x_newer
+      - /media/slu/New Volume/sd_local:/data/models/Stable-diffusion/sd_local
     stop_signal: SIGKILL
     tty: true
     deploy:
