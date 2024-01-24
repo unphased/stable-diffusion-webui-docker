@@ -12,6 +12,7 @@ x-base_service: &base_service
       - /media/slu/New Volume/solidigm_sd_newer:/data/models/Stable-diffusion/nvme-solidigm_newer
       - /media/slu/New Volume/sn850x_sd_newer:/data/models/Stable-diffusion/nvme-sn850x_newer
       - /media/slu/New Volume/sd_local:/data/models/Stable-diffusion/sd_local
+      - /media/slu/NTFS Mushkin/sd:/data/models/Stable-diffusion/mushkin
     stop_signal: SIGKILL
     tty: true
     deploy:
