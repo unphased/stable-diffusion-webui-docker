@@ -35,7 +35,7 @@ services:
     <<: *base_service
     profiles: ["auto"]
     build: ./services/AUTOMATIC1111
-    image: sd-auto:67
+    image: sd-auto:71
     environment:
       - CLI_ARGS=--allow-code --xformers --enable-insecure-extension-access --api
 
@@ -79,7 +79,7 @@ services:
     <<: *base_service
     profiles: ["comfy"]
     build: ./services/comfy/
-    image: sd-comfy:5
+    image: sd-comfy:6
     ports:
       - "${WEBUI_PORT:-7861}:7860"
     environment:
