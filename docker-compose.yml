@@ -4,15 +4,35 @@ x-base_service: &base_service
     ports:
       - "${WEBUI_PORT:-7860}:7860"
     volumes:
-      - &v1 /media/slu/New Volume/from-vat:/data
-      - &v2 ./output:/output
-      - /media/slu/New Volume/from-slash/models_on_nvme:/data/models/Stable-diffusion/nvme
-      - /media/slu/New Volume/from-sn850x/SD:/data/models/Stable-diffusion/nvme-sn850x
-      - /media/slu/New Volume/from-solidigm/SD:/data/models/Stable-diffusion/nvme-solidigm
-      - /media/slu/New Volume/solidigm_sd_newer:/data/models/Stable-diffusion/nvme-solidigm_newer
-      - /media/slu/New Volume/sn850x_sd_newer:/data/models/Stable-diffusion/nvme-sn850x_newer
-      - /media/slu/New Volume/sd_local:/data/models/Stable-diffusion/sd_local
-      - /media/slu/NTFS Mushkin/sd:/data/models/Stable-diffusion/mushkin
+      - &v1
+        type: bind
+        source: /media/slu/New Volume/from-vat
+        target: /data
+      - &v2
+        type: bind
+        source: ./output
+        target: /output
+      - type: bind
+        source: /media/slu/New Volume/from-slash/models_on_nvme
+        target: /data/models/Stable-diffusion/nvme
+      - type: bind
+        source: /media/slu/New Volume/from-sn850x/SD
+        target: /data/models/Stable-diffusion/nvme-sn850x
+      - type: bind
+        source: /media/slu/New Volume/from-solidigm/SD
+        target: /data/models/Stable-diffusion/nvme-solidigm
+      - type: bind
+        source: /media/slu/New Volume/solidigm_sd_newer
+        target: /data/models/Stable-diffusion/nvme-solidigm_newer
+      - type: bind
+        source: /media/slu/New Volume/sn850x_sd_newer
+        target: /data/models/Stable-diffusion/nvme-sn850x_newer
+      - type: bind
+        source: /media/slu/New Volume/sd_local
+        target: /data/models/Stable-diffusion/sd_local
+      - type: bind
+        source: /media/slu/NTFS Mushkin/sd
+        target: /data/models/Stable-diffusion/mushkin
     stop_signal: SIGKILL
     tty: true
     deploy:
