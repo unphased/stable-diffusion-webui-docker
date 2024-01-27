@@ -4,14 +4,32 @@ x-base_service: &base_service
     ports:
       - "${WEBUI_PORT:-7860}:7860"
     volumes:
-      - &v1 /vat/backups/StableDiffusion/data:/data
-      - &v2 ./output:/output
-      - ./models_on_nvme:/data/models/Stable-diffusion/nvme
-      - /media/slu/SN850X/SD:/data/models/Stable-diffusion/nvme2
-      - /media/slu/SN750/SD:/data/models/Stable-diffusion/nvme3
-      - /media/slu/Solidigm/SD:/data/models/Stable-diffusion/nvme4
-      - ./vae_on_nvme:/data/models/VAE/nvme
-      - /media/slu/SN850X/SD_Lora:/data/models/Lora/sn850x
+      - &v1
+        type: bind
+        source: /vat/backups/StableDiffusion/data
+        target: /data
+      - &v2
+        type: bind
+        source: ./output
+        target: /output
+      - type: bind
+        source: ./models_on_nvme
+        target: /data/models/Stable-diffusion/nvme
+      - type: bind
+        source: /media/slu/SN850X/SD
+        target: /data/models/Stable-diffusion/nvme2
+      - type: bind
+        source: /media/slu/SN750/SD
+        target: /data/models/Stable-diffusion/nvme3
+      - type: bind
+        source: /media/slu/Solidigm/SD
+        target: /data/models/Stable-diffusion/nvme4
+      - type: bind
+        source: ./vae_on_nvme
+        target: /data/models/VAE/nvme
+      - type: bind
+        source: /media/slu/SN850X/SD_Lora
+        target: /data/models/Lora/sn850x
     stop_signal: SIGKILL
     tty: true
     deploy:
