@@ -28,11 +28,14 @@ x-base_service: &base_service
         source: /media/slu/New Volume/sn850x_sd_newer
         target: /data/models/Stable-diffusion/nvme-sn850x_newer
       - type: bind
+        source: /media/slu/525672F85672DBE3/sd
+        target: /data/models/Stable-diffusion/2tb_part1_sd
+      - type: bind
         source: /media/slu/New Volume/sd_local
         target: /data/models/Stable-diffusion/sd_local
-      - type: bind
-        source: /media/slu/NTFS Mushkin/sd
-        target: /data/models/Stable-diffusion/mushkin
+      # - type: bind
+      #   source: /media/slu/NTFS Mushkin/sd
+      #   target: /data/models/Stable-diffusion/mushkin
     stop_signal: SIGKILL
     tty: true
     deploy:
