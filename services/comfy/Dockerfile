@@ -4,13 +4,14 @@ ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
 RUN apt-get update && apt-get install -y git ffmpeg && apt-get clean
 
+ARG CACHEBUST=1
 ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip \
   git clone https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout master && \
-  echo git hash: $(git rev-parse HEAD) && \
-  # git reset --hard 3e0033e && \
+  echo "cachebuster value: ${CACHEBUST}" && \
+  echo "git hash: $(git rev-parse HEAD)" && \
   # upstream has... # git reset --hard d1f3637a5a944d0607b899babd8ff11d87100503 && \
   pip install -r requirements.txt
 
