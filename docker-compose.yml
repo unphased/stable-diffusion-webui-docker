@@ -28,14 +28,27 @@ x-base_service: &base_service
         source: /media/slu/New Volume/sn850x_sd_newer
         target: /data/models/Stable-diffusion/nvme-sn850x_newer
       - type: bind
+        source: /media/slu/525672F85672DBE3/sd/flux_text_encoders
+        target: /data/config/comfy/models/clip/2tb_part1_sd_fluxtextencoders
+      - type: bind
+        source: /media/slu/525672F85672DBE3/sd/FLUX.1-schnell/ae.sft
+        target: /data/models/VAE/2tb_part1_sd_flux1ae.sft
+      - type: bind
         source: /media/slu/525672F85672DBE3/sd
-        target: /data/models/Stable-diffusion/2tb_part1_sd
+        target: /data/config/comfy/models/unet/2tb_part1_sd
       - type: bind
         source: /media/slu/New Volume/sd_local
         target: /data/models/Stable-diffusion/sd_local
       # - type: bind
+      #   source: /media/slu/525672F85672DBE3/sd/FLUX.1-schnell/
+      #   target: /data/models/flux-schnell
+      # - type: bind
       #   source: /media/slu/NTFS Mushkin/sd
       #   target: /data/models/Stable-diffusion/mushkin
+
+      - type: bind
+        source: /home/slu/.docker-bash-history
+        target: /root/.bash_history
     stop_signal: SIGKILL
     tty: true
     deploy:
@@ -105,8 +118,8 @@ services:
     build:
       context: ./services/comfy/
       args:
-        CACHEBUST: "$(date)"
-    image: sd-comfy:13
+        CACHEBUST: ${CACHEBUST:-1}
+    image: sd-comfy
     ports:
       - "${WEBUI_PORT:-7861}:7860"
     environment:
