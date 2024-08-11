@@ -25,6 +25,9 @@ x-base_service: &base_service
       source: /media/slu/Solidigm/SD
       target: /data/models/Stable-diffusion/nvme4
     - type: bind
+      source: /media/slu/ff8409d4-e33d-4205-bb34-c25e64536456/
+      target: /data/models/Stable-diffusion/nvme5
+    - type: bind
       source: ./vae_on_nvme
       target: /data/models/VAE/nvme
     - type: bind
