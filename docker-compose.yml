@@ -1,44 +1,44 @@
 version: '3.9'
 
 x-base_service: &base_service
-    ports:
-      - "${WEBUI_PORT:-7860}:7860"
-    volumes:
-      - &v1
-        type: bind
-        source: /vat/backups/StableDiffusion/data
-        target: /data
-      - &v2
-        type: bind
-        source: ./output
-        target: /output
-      - type: bind
-        source: ./models_on_nvme
-        target: /data/models/Stable-diffusion/nvme
-      - type: bind
-        source: /media/slu/SN850X/SD
-        target: /data/models/Stable-diffusion/nvme2
-      - type: bind
-        source: /media/slu/SN750/SD
-        target: /data/models/Stable-diffusion/nvme3
-      - type: bind
-        source: /media/slu/Solidigm/SD
-        target: /data/models/Stable-diffusion/nvme4
-      - type: bind
-        source: ./vae_on_nvme
-        target: /data/models/VAE/nvme
-      - type: bind
-        source: /media/slu/SN850X/SD_Lora
-        target: /data/models/Lora/sn850x
-    stop_signal: SIGKILL
-    tty: true
-    deploy:
-      resources:
-        reservations:
-          devices:
-              - driver: nvidia
-                device_ids: ['0']
-                capabilities: [compute, utility]
+  ports:
+    - "${WEBUI_PORT:-7860}:7860"
+  volumes:
+    - &v1
+      type: bind
+      source: /vat/backups/StableDiffusion/data
+      target: /data
+    - &v2
+      type: bind
+      source: ./output
+      target: /output
+    - type: bind
+      source: ./models_on_nvme
+      target: /data/models/Stable-diffusion/nvme
+    - type: bind
+      source: /media/slu/SN850X/SD
+      target: /data/models/Stable-diffusion/nvme2
+    - type: bind
+      source: /media/slu/SN750/SD
+      target: /data/models/Stable-diffusion/nvme3
+    - type: bind
+      source: /media/slu/Solidigm/SD
+      target: /data/models/Stable-diffusion/nvme4
+    - type: bind
+      source: ./vae_on_nvme
+      target: /data/models/VAE/nvme
+    - type: bind
+      source: /media/slu/SN850X/SD_Lora
+      target: /data/models/Lora/sn850x
+  stop_signal: SIGKILL
+  tty: true
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            device_ids: ['0']
+            capabilities: [compute, utility]
 
 name: webui-docker
 
