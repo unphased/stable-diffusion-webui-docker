@@ -30,6 +30,20 @@ x-base_service: &base_service
     - type: bind
       source: /media/slu/SN850X/SD_Lora
       target: /data/models/Lora/sn850x
+
+    - type: bind
+      source: ./data/models/text_encoders
+      target: /data/config/comfy/models/text_encoders
+    - type: bind
+      source: ./data/models/clip_vision
+      target: /data/config/comfy/models/clip_vision
+    - type: bind
+      source: ./data/models/vae
+      target: /data/config/comfy/models/vae
+    - type: bind
+      source: ./data/models/diffusion_models/
+      target: /data/config/comfy/models/diffusion_models
+
   stop_signal: SIGKILL
   tty: true
   deploy:
