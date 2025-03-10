@@ -12,21 +12,18 @@ x-base_service: &base_service
       type: bind
       source: ./output
       target: /output
-    - type: bind
-      source: ./models_on_nvme
-      target: /data/models/Stable-diffusion/nvme
-    - type: bind
-      source: /media/slu/SN850X/SD
-      target: /data/models/Stable-diffusion/nvme2
-    - type: bind
-      source: /media/slu/SN750/SD
-      target: /data/models/Stable-diffusion/nvme3
-    - type: bind
-      source: /media/slu/Solidigm/SD
-      target: /data/models/Stable-diffusion/nvme4
-    - type: bind
-      source: /media/slu/ff8409d4-e33d-4205-bb34-c25e64536456/
-      target: /data/models/Stable-diffusion/nvme5
+    # - type: bind
+    #   source: /media/slu/SN850X/SD
+    #   target: /data/models/Stable-diffusion/nvme2
+    # - type: bind
+    #   source: /media/slu/SN750/SD
+    #   target: /data/models/Stable-diffusion/nvme3
+    # - type: bind
+    #   source: /media/slu/Solidigm/SD
+    #   target: /data/models/Stable-diffusion/nvme4
+    # - type: bind
+    #   source: /media/slu/ff8409d4-e33d-4205-bb34-c25e64536456/
+    #   target: /data/models/Stable-diffusion/nvme5
     - type: bind
       source: ./vae_on_nvme
       target: /data/models/VAE/nvme
