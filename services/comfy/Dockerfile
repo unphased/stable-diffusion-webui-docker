@@ -14,7 +14,8 @@ RUN --mount=type=cache,target=/root/.cache/pip \
   echo "git hash: $(git rev-parse HEAD)" && \
   pip install -r requirements.txt && \
   # sageattention needed for comfy launched with it as flag \
-  pip install sageattention
+  pip install sageattention \
+  omegaconf opencv-python-headless matplotlib gguf accelerate deepdiff cupy-cuda12x piexif scikit-image
 
 # ... contemplating adding a list of python deps needed by various nodes i use. tired of manually reinstalling custom nodes just to
 # cause the pip lib installation side effects to happen.
@@ -37,7 +38,7 @@ RUN chmod u+x /docker/entrypoint.sh && cp /docker/extra_model_paths.yaml ${ROOT}
 # fix dumb stuff done by ... not sure what. but it affects VHS video export node.
 # RUN rm /opt/conda/bin/ffmpeg && ln -s /bin/ffmpeg /opt/conda/bin/ffmpeg
 
-ENV NVIDIA_VISIBLE_DEVICES=all PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
+ENV NVIDIA_VISIBLE_DEVICES=all PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS="" CUDA_HOME=/usr/lib/x86_64-linux-gnu/
 EXPOSE 7860
 ENTRYPOINT ["/docker/entrypoint.sh"]
 CMD python -u main.py --listen --port 7860 ${CLI_ARGS}

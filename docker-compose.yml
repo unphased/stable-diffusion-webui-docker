@@ -111,7 +111,7 @@ services:
     <<: *base_service
     profiles: ["comfy"]
     build: ./services/comfy/
-    image: sd-comfy:6
+    image: sd-comfy:7
     ports:
       - "${WEBUI_PORT:-7861}:7860"
     environment:
