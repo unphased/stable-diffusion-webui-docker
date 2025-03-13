@@ -115,7 +115,7 @@ services:
     ports:
       - "${WEBUI_PORT:-7861}:7860"
     environment:
-      - CLI_ARGS=--preview-method=taesd
+      - CLI_ARGS=--preview-method=taesd --use-sage-attention
 
   comfy2:
     <<: *comfy
